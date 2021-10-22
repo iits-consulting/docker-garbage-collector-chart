@@ -1,6 +1,0 @@
-dependencies:
-- name: kruise
-  repository: https://iits-consulting.github.io/kruise-chart/
-  version: 0.10.0
-digest: sha256:a476d805985b588ef4f5be4b0944a36cc791931746485c4158e3d61e445e5537
-generated: "2021-10-22T17:01:14.141788828+02:00"
