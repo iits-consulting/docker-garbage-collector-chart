@@ -1,0 +1,8 @@
+dockerGarbageCollector:
+  image: docker
+  schedule: "0 0 * * 6"
+#  This is a bug on kruise and hopefully will be fixed with the next release.
+#  Set this to the period of the cronjob (0 0 * * 6)!
+  ttlSecondsAfterFinished: 604800
+podAnnotations: {}
+podLabels: {}

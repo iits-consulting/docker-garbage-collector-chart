@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-cleanup
+data:
+  cleanup.sh: |-
+    {{- printf "scripts/cleanup.sh" | .Files.Get | nindent 4}}

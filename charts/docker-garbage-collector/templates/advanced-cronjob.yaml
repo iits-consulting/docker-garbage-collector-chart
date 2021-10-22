@@ -1,0 +1,43 @@
+apiVersion: apps.kruise.io/v1alpha1
+kind: AdvancedCronJob
+metadata:
+  name: {{ .Chart.Name }}-cronjob
+spec:
+  schedule: {{ .Values.dockerGarbageCollector.schedule | quote }}
+  template:
+    broadcastJobTemplate:
+      spec:
+        template:
+          metadata:
+            name: {{ .Chart.Name }}
+            {{- with .Values.podAnnotations }}
+            annotations:
+              {{- toYaml . | nindent 14 }}
+            {{- end }}
+            {{- with .Values.podLabels }}
+            labels:
+              {{- toYaml . | nindent 14 }}
+            {{- end }}
+          spec:
+            volumes:
+            - name: {{.Chart.Name}}-cleanup-configmap
+              configMap:
+                name: {{.Chart.Name}}-cleanup
+                defaultMode: 0755
+            - name: docker-sock
+              hostPath:
+                path: /var/run
+            containers:
+              - name: {{ .Chart.Name}}
+                image: {{.Values.dockerGarbageCollector.image}}
+                command:
+                - "/opt/scripts/cleanup.sh"
+                volumeMounts:
+                  - mountPath: /opt/scripts
+                    name: {{.Chart.Name}}-cleanup-configmap
+                  - mountPath: /var/run
+                    name: docker-sock
+            restartPolicy: Never
+        completionPolicy:
+          type: Always
+          ttlSecondsAfterFinished: {{.Values.dockerGarbageCollector.ttlSecondsAfterFinished}}
