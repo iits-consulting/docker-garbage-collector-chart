@@ -1,0 +1,16 @@
+apiVersion: v1
+entries:
+  docker-garbage-collector:
+  - apiVersion: v2
+    created: "2021-10-22T15:51:21.584672336Z"
+    dependencies:
+    - name: kruise
+      repository: https://iits-consulting.github.io/kruise-chart
+      version: 0.10.0
+    description: A Helm chart to periodically cleanup unused docker images and volumes.
+    digest: d18bb150ec62213016e213bd9d4c45f8f97a2f8bff651d3a33979d0c19a451e4
+    name: docker-garbage-collector
+    urls:
+    - https://github.com/iits-consulting/docker-garbage-collector-chart/releases/download/docker-garbage-collector-1.0.0/docker-garbage-collector-1.0.0.tgz
+    version: 1.0.0
+generated: "2021-10-22T15:51:21.584680236Z"
