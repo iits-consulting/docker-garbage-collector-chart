@@ -1,3 +1,7 @@
+# Deprecated
+
+We don't need and use it anymore
+
 ## Usage
 docker-garbage-collector helm chart for kubernetes
 It is basically an advanced cronjob for cleanup of dangling volumes, images and exited containers
